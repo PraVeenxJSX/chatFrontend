@@ -3,7 +3,7 @@ import './App.css';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import HomePage from './components/HomePage';
 import Login from './components/Login';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {useSelector,useDispatch} from "react-redux";
 import io from "socket.io-client";
 import { setSocket } from './redux/socketSlice';
@@ -23,7 +23,6 @@ const router = createBrowserRouter([
     path:"/login",
     element:<Login/>
   },
-
 ])
 
 function App() { 
@@ -50,14 +49,23 @@ function App() {
         dispatch(setSocket(null));
       }
     }
-
   },[authUser]);
 
   return (
-    <div className="p-4 h-screen flex items-center justify-center">
-      <RouterProvider router={router}/>
+    <div className="min-h-screen w-full relative">
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="fixed top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src="/28236-368501609_small.mp4" type="video/mp4" />
+      </video>
+      <div className="relative z-10 p-4 h-screen flex items-center justify-center">
+        <RouterProvider router={router}/>
+      </div>
     </div>
-
   );
 }
 
